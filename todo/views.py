@@ -6,3 +6,10 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("Hello, world!")
+
+
+def addTodo(request):
+    if request.method == "POST":
+        return HttpResponse("OK")
+    else:
+        return HttpResponse("NOK")
