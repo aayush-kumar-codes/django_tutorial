@@ -12,12 +12,12 @@ from django.utils.decorators import method_decorator
 class TodoView(View):
 
     def get(self, request):
-        return HttpResponse("Hello, world!")
+        todos = Todo.objects.all()
+        return HttpResponse(todos)
 
     @csrf_exempt
     def post(self, request):
         req = json.loads(request.body)
-        print(req)
         todo = Todo(task=req["task"], created_at=timezone.now())
         todo.save()
 
