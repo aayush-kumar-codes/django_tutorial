@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
@@ -8,9 +8,9 @@ from django.views.decorators.csrf import csrf_exempt
 def index(request):
     return HttpResponse("Hello, world!")
 
-@csrf_exempt
+@csrf_exempt    
 def addTodo(request):
     if request.method == "POST":
         return HttpResponse("OK")
     else:
-        return HttpResponse("NOK")
+        return HttpResponseNotAllowed("POST")
