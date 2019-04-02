@@ -4,19 +4,21 @@ from django.views.decorators.csrf import csrf_exempt
 from todo.models import Todo
 import json
 from django.utils import timezone
+from django.views import View
+from django.utils.decorators import method_decorator
 
-def index(request):
-    return HttpResponse("Hello, world!")
 
+@method_decorator(csrf_exempt, name='dispatch')
+class TodoView(View):
 
-@csrf_exempt
-def addTodo(request):
-    if request.method == "POST":
+    def get(self, request):
+        return HttpResponse("Hello, world!")
+
+    @csrf_exempt
+    def post(self, request):
         req = json.loads(request.body)
         print(req)
         todo = Todo(task=req["task"], created_at=timezone.now())
         todo.save()
 
         return HttpResponse(todo.id)
-    else:
-        return HttpResponseNotAllowed("POST")
