@@ -22,3 +22,13 @@ class TodoView(View):
         todo.save()
 
         return HttpResponse(todo.id)
+
+
+@csrf_exempt
+def login(request):
+    return HttpResponse("")
+
+
+@csrf_exempt
+def register(request):
+    return HttpResponse("")
