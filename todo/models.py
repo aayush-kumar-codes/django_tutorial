@@ -1,14 +1,8 @@
 from django.db import models
 
-# Create your models here.
+from user.models import User
 import datetime
 
-
-
-
-class User(models.Model):
-    username = models.CharField(max_length=255,unique=True)
-    password = models.CharField(max_length=255)
 
 
 class Todo(models.Model):
